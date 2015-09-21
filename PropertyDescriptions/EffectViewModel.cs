@@ -5,33 +5,33 @@ using System;
 
 namespace PropertyDescriptions
 {
-public class EffectViewModel
-{
-    public BlurEffect blur { get; set; }
-
-    public EffectViewModel()
+    public class EffectViewModel
     {
-        this.blur = new BlurEffect();
+        public BlurEffect blur { get; set; }
 
-        DetectPropertyDescriptions();
-    }
-
-    private void DetectPropertyDescriptions()
-    {
-        IPropertyDescriptions blurPropertyDescriptions = this.blur as IPropertyDescriptions;
-
-        if (blurPropertyDescriptions != null)
+        public EffectViewModel()
         {
-            var propertyDescription = blurPropertyDescriptions.PropertyDescriptions[nameof(this.blur.KernelSize)];
+            this.blur = new BlurEffect();
 
-            this.DefaultValue = (int) propertyDescription.DefaultValue;
-            this.MinValue = (int) propertyDescription.MinValue;
-            this.MaxValue = (int) propertyDescription.MaxValue;
+            DetectPropertyDescriptions();
         }
-    }
 
-    public int DefaultValue { get; set; }
-    public int MaxValue { get; set; }
-    public int MinValue { get; set; }
+        private void DetectPropertyDescriptions()
+        {
+            IPropertyDescriptions blurPropertyDescriptions = this.blur as IPropertyDescriptions;
+
+            if (blurPropertyDescriptions != null)
+            {
+                var propertyDescription = blurPropertyDescriptions.PropertyDescriptions[nameof(this.blur.KernelSize)];
+
+                this.DefaultValue = (int) propertyDescription.DefaultValue;
+                this.MinValue = (int) propertyDescription.MinValue;
+                this.MaxValue = (int) propertyDescription.MaxValue;
+            }
+        }
+
+        public int DefaultValue { get; set; }
+        public int MaxValue { get; set; }
+        public int MinValue { get; set; }
     }
 }
