@@ -29,6 +29,7 @@ namespace PropertyDescriptions
     public sealed partial class MainPage : Page
     {
         private BitmapImage bitmap;
+        private WriteableBitmapRenderer renderer;
         private WriteableBitmap resultBitmap;
         private EffectViewModel viewModel;
 
@@ -87,10 +88,12 @@ namespace PropertyDescriptions
             {
                 this.viewModel.blur.KernelSize = (int)e.NewValue;
 
-                using (var renderer = new WriteableBitmapRenderer(this.viewModel.blur, this.resultBitmap))
+                if (this.renderer == null)
                 {
-                    await renderer.RenderAsync();
+                    this.renderer = new WriteableBitmapRenderer(this.viewModel.blur, this.resultBitmap);
                 }
+
+                await this.renderer.RenderAsync();
 
                 this.resultBitmap.Invalidate();
 
