@@ -12,7 +12,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Image x:Name="LoadedImage" Stretch="UniformToFill"></Image>
+        <SwapChainPanel x:Name="ImageSwapChainPanel" />
         <RelativePanel Grid.Row="1" Margin="24">
             <Button x:Name="LoadButton" 
                     Content="Load image" 
